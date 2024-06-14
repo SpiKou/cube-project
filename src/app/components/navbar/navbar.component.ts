@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
 
-
 @Component({
   selector: 'app-navbar',
   standalone: true,
