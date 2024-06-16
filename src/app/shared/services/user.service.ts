@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { Credentials, User } from "../interfaces/user";
 import { environment } from "src/environments/environment.development";
+import { Router } from "@angular/router";
 
 const API_URL = `${environment.apiURL}/user`;
 
@@ -11,12 +12,21 @@ const API_URL = `${environment.apiURL}/user`;
 export class UserService {
 
     http: HttpClient = inject(HttpClient);
+    router: Router = inject(Router);
 
     registerUser(user: User) {
         return this.http.post<{msg: string}>(`${API_URL}/register`, user);
     }
 
+    check_duplicate_email(email: string) {
+        return this.http.get<{msg: string}>(
+            `${API_URL}/check_duplicate_email/${email}`, 
+        );
+    }
+
     loginUser(credentials: Credentials) {
-        return this.http.post<{ }>
+        return this.http.post<{ access_token: string }>(
+            `${API_URL}/login`, credentials,
+        );
     }
 }
