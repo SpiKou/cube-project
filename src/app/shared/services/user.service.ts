@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { User } from "../interfaces/user";
+import { Credentials, User } from "../interfaces/user";
 import { environment } from "src/environments/environment.development";
 
 const API_URL = `${environment.apiURL}/user`;
@@ -14,5 +14,9 @@ export class UserService {
 
     registerUser(user: User) {
         return this.http.post<{msg: string}>(`${API_URL}/register`, user);
+    }
+
+    loginUser(credentials: Credentials) {
+        return this.http.post<{ }>
     }
 }
