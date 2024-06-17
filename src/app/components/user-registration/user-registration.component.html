@@ -1,1 +1,94 @@
-<p>user-registration works!</p>
+<h4>User Registration</h4>
+
+<form [formGroup]="form" class="d-flex flex-column">
+
+    <mat-form-field>
+        <mat-label>
+            First Name
+        </mat-label>
+        <input 
+        matInput 
+        type="text" 
+        formControlName="firstName" />
+        @if (form.get('firstName').invalid && form.get('firstName').touched) {
+            <mat-error>
+                First Name is required
+            </mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>
+            Last Name
+        </mat-label>
+        <input 
+        matInput 
+        type="text" 
+        formControlName="lastName" />
+        @if (form.get('lastName').invalid && form.get('lastName').touched) {
+            <mat-error>
+                Last Name is required
+            </mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>
+            Email
+        </mat-label>
+        <input 
+        matInput 
+        type="text" 
+        formControlName="email" />
+        @if (form.get('email').invalid && form.get('email').touched) {
+            <mat-error>
+                Email is required
+            </mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>
+            Password
+        </mat-label>
+        <input 
+        matInput 
+        type="password" 
+        formControlName="password" />
+        @if (form.get('password').invalid && form.get('password').touched) {
+            <mat-error>
+                Password is required
+            </mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>
+            Confirm Password
+        </mat-label>
+        <input 
+        matInput 
+        type="password" 
+        formControlName="confirmPassword" />
+        @if (form.get('confirmPassword').hasError('passwordMismatch')){
+            <mat-error>
+                Passwords do not match
+            </mat-error>
+        } @else { 
+            @if (form.get('confirmPassword').invalid && form.get('confirmPassword').touched) {
+                <mat-error>
+                    Password is required
+                </mat-error>
+            }
+        }
+    </mat-form-field>
+
+    <button
+        mat-flat-button
+        color="primary"
+        [disabled]="form.invalid"
+        (click)="onSubmit(form.value)">
+        Register
+    </button>
+
+</form>
