@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MenuListComponent } from './components/menu-list/menu-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',

@@ -5,6 +5,7 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { MenuListComponent } from './components/menu-list/menu-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
     {
@@ -30,5 +31,9 @@ export const routes: Routes = [
     {
         path: 'dropdown',
         component: DropdownComponent,
+    },
+    {
+        path: 'login', 
+        component: LoginComponent,
     },
 ];
