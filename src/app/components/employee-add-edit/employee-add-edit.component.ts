@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
 import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
@@ -17,6 +17,7 @@ import { MatOption, MatSelect } from '@angular/material/select';
     MatSelect,
     MatOption,
     MatDialogModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './employee-add-edit.component.html',
   styleUrl: './employee-add-edit.component.css'

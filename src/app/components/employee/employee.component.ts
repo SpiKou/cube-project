@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { Employee } from 'src/app/shared/interfaces/employee';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,8 @@ import { Employee } from 'src/app/shared/interfaces/employee';
     MatFormFieldModule,
     MatIcon,
     MatPaginator,
-    MatTable
+    MatTable,
+    ReactiveFormsModule,
   ],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
