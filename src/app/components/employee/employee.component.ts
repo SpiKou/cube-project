@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
 import { MatDialog } from '@angular/material/dialog'; 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,7 +19,7 @@ import { Employee } from 'src/app/shared/interfaces/employee';
     MatFormFieldModule,
     MatIcon,
     MatPaginator,
-    
+    MatTable
   ],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
