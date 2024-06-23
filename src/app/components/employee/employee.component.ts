@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
+import { Employee } from 'src/app/shared/interfaces/employee';
 
 
 
@@ -18,20 +19,27 @@ import { MatIcon } from '@angular/material/icon';
     MatFormFieldModule,
     MatIcon,
     MatPaginator,
-    MatTableDataSource,
+    
   ],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
 })
 export class EmployeeComponent implements OnInit{
-  ngOnInit(): void {
-    this.getEmployees();
+  EmployeeService = inject(EmployeeService);
+  employees: Employee[] = [];
+
+  dataSource = new MatTableDataSource<Employee[]>();
+
+  ngOnInit() {
+    this.EmployeeService
+    .getEmployees()
+    .subscribe( stream => {this.dataSource.data = stream as any});
   }
 
   getEmployees() {
     this.employeeService.getEmployees().subscribe({
       next: (response) => {
-        this.dataSource = new MatTableDataSource(response.employees);
+        this.dataSource = new MatTableDataSource(this.dataSource.data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         console.log(response)
@@ -48,8 +56,10 @@ export class EmployeeComponent implements OnInit{
     'position', 
   ];
 
-  dataSource!: MatTableDataSource<any>;
-
+  // dataSource = new MatTableDataSource<any>();
+  // dataSource = new MatTableDataSource([]);
+  
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
