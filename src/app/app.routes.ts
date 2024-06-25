@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
-import { DepartmentComponent } from './components/department/department.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { MenuListComponent } from './components/menu-list/menu-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { EmployeeAddEditComponent } from './components/employee-add-edit/employee-add-edit.component';
 
 export const routes: Routes = [
     {
@@ -41,4 +41,12 @@ export const routes: Routes = [
         path: 'employee',
         component: EmployeeComponent,
     },
+    {
+        path: 'create',
+        component: EmployeeAddEditComponent,
+    },
+    {
+        path: 'edit/:id',
+        component: EmployeeAddEditComponent,
+    }
 ];
