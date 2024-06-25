@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { UserService } from 'src/app/shared/services/user.service';
 
 
 @Component({
@@ -11,5 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-
+  userService = inject(UserService);
+  user = this.userService.user;
 }

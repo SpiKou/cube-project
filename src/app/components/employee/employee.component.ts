@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { Employee } from 'src/app/shared/interfaces/employee';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -26,96 +27,124 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
 })
-export class EmployeeComponent implements OnInit{
-  EmployeeService = inject(EmployeeService);
+export class EmployeeComponent {
+  // EmployeeService = inject(EmployeeService);
+  // employees: Employee[] = [];
+
+  // dataSource = new MatTableDataSource<Employee[]>();
+
+  // ngOnInit() {
+  //   this.EmployeeService
+  //   .getEmployees()
+  //   .subscribe( stream => {this.dataSource.data = stream as any});
+  // }
+
+  // getEmployees() {
+  //   this.employeeService.getEmployees().subscribe({
+  //     next: (response) => {
+  //       this.dataSource = new MatTableDataSource(this.dataSource.data);
+  //       this.dataSource.paginator = this.paginator;
+  //       this.dataSource.sort = this.sort;
+  //       console.log(response)
+  //     },
+  //     error: (response) => {
+  //       console.error('Error getting employees', response);
+  //     },
+    
+  //   })
+  // }
+  // displayedColumns: string[] = [
+  //   'id',
+  //   'name',
+  //   'position', 
+  // ];
+
+  // // dataSource = new MatTableDataSource<any>();
+  // // dataSource = new MatTableDataSource([]);
+  
+  
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // @ViewChild(MatSort) sort!: MatSort;
+
+  // constructor(
+  //   private dialog: MatDialog,
+  //   private employeeService: EmployeeService,
+  // ) {}
+
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value;
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  //   if(this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
+
+  // deleteEmployee(id: string) {
+  //   let confirm = window.confirm('Are you sure you want to delete this employee?');
+  //   if(confirm) {
+  //     this.employeeService.deleteEmployee(id).subscribe({
+  //       next: (response) => {
+  //         alert('Employee deleted');
+  //         this.getEmployees();
+  //       },
+  //       error: (response) => {
+  //         console.error('Error deleting employee', response);
+  //       },
+  //     });
+  //   }
+  // }
+
+  // openEditForm(employee: any) {
+  //   const dialogRef = this.dialog.open(EmployeeComponent, {
+  //     data: employee,
+  //   })
+
+  //   dialogRef.afterClosed().subscribe({
+  //     next: (val) => {
+  //       if (val) {
+  //         this.getEmployees();
+  //       }
+  //     }
+  //   })
+  // }
+
+  // openAddEditEmployeeDialog() {
+  //   const dialogRef = this.dialog.open(EmployeeComponent);
+  //   dialogRef.afterClosed().subscribe({
+  //     next: (val) => {
+  //       if (val) {
+  //         this.getEmployees();
+  //       }
+  //     }
+  //   })
+  // }
+
+  employeeService = inject(EmployeeService);
+  router = inject(Router);
   employees: Employee[] = [];
 
-  dataSource = new MatTableDataSource<Employee[]>();
+
 
   ngOnInit() {
-    this.EmployeeService
-    .getEmployees()
-    .subscribe( stream => {this.dataSource.data = stream as any});
+    this.employeeService
+      .getEmployees()
+      .subscribe((data) => (this.employees = data));
   }
 
-  getEmployees() {
-    this.employeeService.getEmployees().subscribe({
-      next: (response) => {
-        this.dataSource = new MatTableDataSource(this.dataSource.data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        console.log(response)
-      },
-      error: (response) => {
-        console.error('Error getting employees', response);
-      },
-    
-    })
+  goToCreate() {
+    this.router.navigate(['/create']);
   }
-  displayedColumns: string[] = [
-    'id',
-    'name',
-    'position', 
-  ];
 
-  // dataSource = new MatTableDataSource<any>();
-  // dataSource = new MatTableDataSource([]);
-  
-  
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(
-    private dialog: MatDialog,
-    private employeeService: EmployeeService,
-  ) {}
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if(this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  editEmployee(id: string) {
+    this.router.navigate(['/edit', id]);
   }
 
   deleteEmployee(id: string) {
-    let confirm = window.confirm('Are you sure you want to delete this employee?');
-    if(confirm) {
-      this.employeeService.deleteEmployee(id).subscribe({
-        next: (response) => {
-          alert('Employee deleted');
-          this.getEmployees();
-        },
-        error: (response) => {
-          console.error('Error deleting employee', response);
-        },
+    if (confirm('Are you sure you want to delete this employee?')) {
+      this.employeeService.deleteEmployee(id).subscribe(() => {
+        this.employees = this.employees.filter((emp) => emp.id !== id);
       });
     }
-  }
-
-  openEditForm(employee: any) {
-    const dialogRef = this.dialog.open(EmployeeComponent, {
-      data: employee,
-    })
-
-    dialogRef.afterClosed().subscribe({
-      next: (val) => {
-        if (val) {
-          this.getEmployees();
-        }
-      }
-    })
-  }
-
-  openAddEditEmployeeDialog() {
-    const dialogRef = this.dialog.open(EmployeeComponent);
-    dialogRef.afterClosed().subscribe({
-      next: (val) => {
-        if (val) {
-          this.getEmployees();
-        }
-      }
-    })
   }
 }

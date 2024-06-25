@@ -1,18 +1,18 @@
 <!-- The toolbar of our app -->
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
     <span>Employee Management Crud App</span>
     <span class="example-spacer"></span>
     <button mat-raised-button color="accent" (click)="openAddEditEmployeeDialog()">ADD EMPLOYEE</button>
-   </mat-toolbar>
+   </mat-toolbar> -->
    <!-- The body of our app -->
-   <div class="main-body">
+   <!-- <div class="main-body"> -->
        <!-- The filter section -->
-       <mat-form-field aria-haspopup="outline">
+       <!-- <mat-form-field aria-haspopup="outline">
          <mat-label>Filter</mat-label>
          <input matInput (keyup)="applyFilter($event)" placeholder="i.e David Smith" #input>
-       </mat-form-field>
+       </mat-form-field> -->
        <!-- The employee details table -->
-       <div class="table-container">
+       <!-- <div class="table-container">
          <table mat-table [dataSource]="dataSource" matSort>
            <ng-container matColumnDef="id">
              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
@@ -40,13 +40,58 @@
            </ng-container>
     
            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
     
            <!-- This row will be shown when there is no matching data. -->
-           <tr class="mat-row" *matNoDataRow>
+           <!-- <tr class="mat-row" *matNoDataRow>
              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
            </tr>
          </table>
          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
        </div>
-     </div>
+     </div> -->
+
+     <div class="container mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Employee List</h1>
+        <button
+          (click)="goToCreate()"
+          class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700 mb-4"
+        >
+          Add Employee
+        </button>
+        @if (employees.length > 0) {
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Position</th>
+              <th class="px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (employee of employees; track employees) {
+            <tr>
+              <td class="border px-4 py-2">{{ employee.name }}</td>
+              <td class="border px-4 py-2">{{ employee.position }}</td>
+              <td class="border px-4 py-2">
+                <button
+                  (click)="editEmployee(employee.id)"
+                  class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700 mr-2"
+                >
+                  Edit
+                </button>
+                <button
+                  (click)="deleteEmployee(employee.id)"
+                  class="bg-red-500 text-white p-2 rounded-md hover:bg-red-700"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+        } @else {
+        <p>No employees found.</p>
+        }
+      </div>

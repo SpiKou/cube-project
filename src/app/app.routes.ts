@@ -6,15 +6,16 @@ import { MenuListComponent } from './components/menu-list/menu-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { LoginComponent } from './components/login/login.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 export const routes: Routes = [
     {
-        path: 'user-registration',
+        path: 'register',
         component: UserRegistrationComponent,
     }, 
     {
-        path: 'department',
-        component: DepartmentComponent,
+        path: '',
+        component: WelcomeComponent,
     },
     {
         path: 'employee',
@@ -35,5 +36,9 @@ export const routes: Routes = [
     {
         path: 'login', 
         component: LoginComponent,
+    },
+    {
+        path: 'employee',
+        component: EmployeeComponent,
     },
 ];

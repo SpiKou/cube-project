@@ -1,1 +1,9 @@
 
+@for (entry of menu; track entry) {
+     <a
+        class="list-group-item list-group-item-action text-truncate"
+        [routerLink]="entry.routerLink"
+        [routerLinkActive]="['active']"
+    >
+    </a>
+}
