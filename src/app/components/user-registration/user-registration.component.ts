@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Form, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
+import { Form, FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +11,14 @@ import { User } from 'src/app/shared/interfaces/user';
 @Component({
   selector: 'app-user-registration',
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, MatButtonModule],
+  imports: [
+    ReactiveFormsModule, 
+    MatInputModule, 
+    MatFormFieldModule, 
+    MatButtonModule, 
+    FormsModule
+  ],
+  encapsulation: ViewEncapsulation.Emulated,
   templateUrl: './user-registration.component.html',
   styleUrl: './user-registration.component.css'
 })

@@ -3,6 +3,28 @@ h4 {
     text-align: center;
 }
 
+mat-input {
+    margin: 40px;
+}
+
+mat-label {
+    padding-top: 10px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin: auto;
+}
+
 form {
     margin-top: 40px;
 }
+
+.mat-form-field-floating-label {
+    height: 48px;
+}
+
+.mat-mdc--text-field-wrapper.mat-mdc-form-field-flex.mat-mdc-floating-label {
+    --mat-form-field-container-height: 90px;
+}
+

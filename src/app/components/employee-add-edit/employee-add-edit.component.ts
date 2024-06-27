@@ -34,6 +34,13 @@ export class EmployeeAddEditComponent {
   route = inject(ActivatedRoute);
 
   constructor() {
+    this.employeeForm = this.fb.group({
+      name: ['', Validators.required],
+      position: ['', Validators.required],
+    });
+  }
+
+  ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {

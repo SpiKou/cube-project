@@ -14,6 +14,6 @@ export class MenuListComponent {
   menu : Menu[] = [
     { text: 'Login', routerLink: 'login' },
     { text: 'Register', routerLink: 'user-registration'},
-    { text: 'Employee', routerLink: 'employee' },
+    { text: 'Add Employee', routerLink: 'employee' },
   ];
 }
