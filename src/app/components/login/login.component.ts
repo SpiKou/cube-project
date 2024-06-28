@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { Credentials, LoggedInUser } from 'src/app/shared/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -8,7 +8,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -45,6 +45,6 @@ export class LoginComponent {
   }
 
   clickButton() {
-    this.router.navigate(['/user-registration']);
+    this.router.navigate(['/register']);
   }
 }
