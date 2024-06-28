@@ -36,7 +36,7 @@ export class UserRegistrationComponent {
 );
 
   passwordConfirmValidator(form: FormGroup) {
-    if (form.get('confirmPassword').value !==form.get('confirmPassword').value) {
+    if (form.get('password').value !==form.get('confirmPassword').value) {
       form.get('confirmPassword').setErrors({passwordMismatch: true});
       return {passwordMismatch: true};
     }
