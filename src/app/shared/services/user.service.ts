@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, effect, inject, signal } from "@angular/core";
 import { Credentials, LoggedInUser, User } from "../interfaces/user";
-import { environment } from "src/environments/environment.development";
+import { environment } from "src/environments/environment";
 import { Router } from "@angular/router";
 
 const API_URL = `${environment.apiURL}/user`;
