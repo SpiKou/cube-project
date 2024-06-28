@@ -22,7 +22,7 @@ connect(
 
 cors = CORS(
     app,
-    resources={r"*": {"origins": ["http://localhost:5000"]}},
+    resources={r"*": {"origins": ["http://localhost:5000/"]}},
 )
 
 app.register_blueprint(user, url_prefix="/user")
