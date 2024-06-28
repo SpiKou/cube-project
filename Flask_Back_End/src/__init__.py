@@ -7,6 +7,7 @@ from pymongo import MongoClient
 from flask_jwt_extended import JWTManager
 
 app = Flask(__name__)
+CORS(app)
 jwt = JWTManager(app)
 app.config["JWT_SECRET_KEY"] = "so secret it's not even funny"
 
@@ -20,10 +21,10 @@ connect(
 # db = client["codingfactory"]
 # collection = db["users"]
 
-cors = CORS(
-    app,
-    resources={r"*": {"origins": ["http://localhost:5000/"]}},
-)
+# cors = CORS(
+#     app,
+#     resources={r"*": {"origins": ["http://localhost:5000/"]}},
+# )
 
 app.register_blueprint(user, url_prefix="/user")
 app.register_blueprint(employee, url_prefix="/employee")

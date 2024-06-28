@@ -25,6 +25,11 @@ import { User } from 'src/app/shared/interfaces/user';
 export class UserRegistrationComponent {
   userService = inject(UserService);
 
+  registrationStatus: { success: boolean; message: string } = {
+    success: false,
+    message: 'Not attempted yet',
+  };
+
   form = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -52,10 +57,27 @@ export class UserRegistrationComponent {
     this.userService.registerUser(user).subscribe({
       next: (response) => {
         console.log('User registered', response.msg);
+        this.registrationStatus = { success: true, message: response.msg };
       },
       error: (response) => {
         const message = response.error.msg;
         console.log('Error registering user', message);
+        this.registrationStatus = { success: false, message };
+      },
+    });
+  }
+
+  check_duplicate_email() {
+    const email = this.form.get('email').value;
+
+    this.userService.check_duplicate_email(email).subscribe({
+      next: (response) => {
+        console.log(response.msg);
+        this.form.get('email').setErrors(null);
+      },
+      error: (response) => {
+        console.log(response.error.msg);
+        this.form.get('email').setErrors({duplicateEmail: true});
       },
     });
   }

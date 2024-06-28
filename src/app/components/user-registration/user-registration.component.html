@@ -2,6 +2,7 @@
 <h4>User Registration</h4>
 
 <div>
+    @if (registrationStatus.message === "Not attempted yet") {
     <form 
         [formGroup]="form" 
         class="d-flex flex-column">
@@ -95,4 +96,17 @@
             Register
         </button>
     </form>
+    } @else {
+        @if (registrationStatus.success) {
+            <div class="alert alert-success mt-2 w-50">
+                <strong>Success:</strong>
+                {{ registrationStatus.message }}
+            </div>
+        } @else {
+            <div class="alert alert-danger mt-2 w-50">
+                <strong>Error:</strong>
+                {{ registrationStatus.message }}
+            </div>
+        }
+    }
 </div>
