@@ -39,7 +39,7 @@ export class EmployeeService {
   http = inject(HttpClient);
 
   getEmployees(): Observable<Employee[]> {
-    return this.http.get<any[]>(this.API_URL);
+    return this.http.get<Employee[]>(this.API_URL);
   }
 
   getEmployee(id: string): Observable<Employee> {
@@ -47,23 +47,27 @@ export class EmployeeService {
   }
 
   createEmployee(employee: Employee): Observable<Employee> {
-    return this.getEmployees().pipe(
-      map((employees) => {
-        const maxId = employees.reduce((max, emp) => Math.max(max, +emp.id), 0);
-        employee.id = (maxId + 1).toString();
-        return employee;
-      }),
-      switchMap((newEmployee) =>
-        this.http.post<Employee>(this.API_URL, newEmployee)
-      )
-    );
+    return this.http.post<Employee>(`${this.API_URL}`, employee);
   }
+
+  // createEmployee(employee: Employee): Observable<Employee> {
+  //   return this.getEmployees().pipe(
+  //     map((employees) => {
+  //       const maxId = employees.reduce((max, emp) => Math.max(max, +emp.id), 0);
+  //       employee.id = (maxId + 1).toString();
+  //       return employee;
+  //     }),
+  //     switchMap((newEmployee) =>
+  //       this.http.post<Employee>(this.API_URL, newEmployee)
+  //     )
+  //   );
+  // }
 
   updateEmployee(id: string, employee: Employee): Observable<Employee> {
     return this.http.put<Employee>(`${this.API_URL}/${id}`, employee);
   }
 
-  deleteEmployee(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.API_URL}/${id}`);
+  deleteEmployee(id: string): Observable<Object> {
+    return this.http.delete(`${this.API_URL}/${id}`);
   }
 }

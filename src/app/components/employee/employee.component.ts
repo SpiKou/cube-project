@@ -127,9 +127,14 @@ export class EmployeeComponent {
 
 
   ngOnInit() {
-    this.employeeService
-      .getEmployees()
-      .subscribe((data) => (this.employees = data));
+    this.getEmployees();
+    // this.employeeService
+    //   .getEmployees()
+    //   .subscribe((data) => (this.employees = data));
+  }
+
+  getEmployees() {
+    this.employeeService.getEmployees().subscribe((data) => (this.employees = data))
   }
 
   goToCreate() {
@@ -141,10 +146,14 @@ export class EmployeeComponent {
   }
 
   deleteEmployee(id: string) {
-    if (confirm('Are you sure you want to delete this employee?')) {
-      this.employeeService.deleteEmployee(id).subscribe(() => {
-        this.employees = this.employees.filter((emp) => emp.id !== id);
-      });
-    }
+    this.employeeService.deleteEmployee(id).subscribe( data => {
+      console.log(data);
+      this.getEmployees();
+    })
+    // if (confirm('Are you sure you want to delete this employee?')) {
+    //   this.employeeService.deleteEmployee(id).subscribe(() => {
+    //     this.employees = this.employees.filter((emp) => emp.id !== id);
+    //   });
+    // }
   }
 }

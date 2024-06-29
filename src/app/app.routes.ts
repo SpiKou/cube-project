@@ -7,6 +7,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { LoginComponent } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { EmployeeAddEditComponent } from './components/employee-add-edit/employee-add-edit.component';
+import { EmployeeUpdateComponent } from './components/employee-update/employee-update.component';
 
 export const routes: Routes = [
     {
@@ -48,5 +49,9 @@ export const routes: Routes = [
     {
         path: 'edit/:id',
         component: EmployeeAddEditComponent,
+    }, 
+    {
+        path: 'update',
+        component: EmployeeUpdateComponent,
     }
 ];
