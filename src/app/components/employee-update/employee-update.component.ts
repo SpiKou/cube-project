@@ -30,4 +30,6 @@ export class EmployeeUpdateComponent {
       this.router.navigate(['/employees']);
     }); 
   }
+
+  updateEmployee() {}
 }

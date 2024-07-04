@@ -10,6 +10,7 @@ import { MatIcon } from '@angular/material/icon';
 import { Employee } from 'src/app/shared/interfaces/employee';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EmployeeUpdateComponent } from '../employee-update/employee-update.component';
 
 
 
@@ -23,6 +24,7 @@ import { Router } from '@angular/router';
     MatPaginator,
     MatTable,
     ReactiveFormsModule,
+    EmployeeUpdateComponent,
   ],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
