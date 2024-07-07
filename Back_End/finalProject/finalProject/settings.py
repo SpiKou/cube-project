@@ -31,12 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'finalProject',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'employee',
@@ -49,7 +51,10 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -84,12 +89,23 @@ WSGI_APPLICATION = 'finalProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'codingfactory',
+#         'ENFORCE_SCHEMA': False,
+#         'CLIENT': {
+#             'host': 'mongodb+srv://cfuser:XLf9lDv4GUSB5Ncm@clustermx0.znfs7oe.mongodb.net/?retryWrites=true&w=majority&appName=ClusterMx0'
+#         }
+#     }
+# }
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
